@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.08 0.02 280);
+  --foreground: oklch(0.97 0.01 280);
+  --brand: oklch(0.72 0.22 320);
+  --brand-glow: oklch(0.78 0.2 200);
+  --gradient-hero: linear-gradient(135deg, oklch(0.72 0.22 320), oklch(0.78 0.2 200));
+  --shadow-glow: 0 20px 80px -20px oklch(0.72 0.22 320 / 0.5);
+  --muted: oklch(0.18 0.03 280);
+  --muted-foreground: oklch(0.65 0.03 280);
+  --primary: oklch(0.72 0.22 320);
+  --primary-foreground: oklch(0.98 0.01 280);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.72 0.22 320);
+}
+
+@layer base {
+  * { border-color: var(--border); }
+  body { background-color: var(--background); color: var(--foreground); }
+}
