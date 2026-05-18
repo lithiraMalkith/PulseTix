@@ -1,3 +1,4 @@
+//defining event type
 export type EventItem = {
   id: string;
   title: string;
@@ -12,6 +13,7 @@ export type EventItem = {
   lineup: string[];
 };
 
+//event list
 export const events: EventItem[] = [
   {
     id: "neon-pulse",
