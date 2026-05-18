@@ -4,9 +4,11 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { SiteNav } from "@/components/SiteNav";
 import { events } from "@/data/events";
+import { useRouter } from "next/navigation";
 
 export default function EventsPage() {
   const [filter, setFilter] = useState<string>("All");
+  const router = useRouter();
   const categories = useMemo(
     () => ["All", ...Array.from(new Set(events.map((e) => e.category)))],
     []
@@ -27,11 +29,10 @@ export default function EventsPage() {
             <button
               key={c}
               onClick={() => setFilter(c)}
-              className={`px-4 py-2 rounded-full text-sm border transition-all ${
-                filter === c
-                  ? "bg-[var(--gradient-hero)] text-white border-transparent"
-                  : "border-white/10 text-muted-foreground hover:text-foreground hover:border-white/30"
-              }`}
+              className={`px-4 py-2 rounded-full text-sm border transition-all ${filter === c
+                ? "bg-[var(--gradient-hero)] text-white border-transparent"
+                : "border-white/10 text-muted-foreground hover:text-foreground hover:border-white/30"
+                }`}
             >
               {c}
             </button>
@@ -42,9 +43,8 @@ export default function EventsPage() {
       <section className="max-w-7xl mx-auto px-6 pb-32">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((e) => (
-            <Link
+            <div
               key={e.id}
-              href={`/events/${e.id}`}
               className="group rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02] hover:border-white/30 transition-all"
             >
               <div className="aspect-video overflow-hidden">
@@ -59,10 +59,10 @@ export default function EventsPage() {
                 <p className="text-sm text-muted-foreground">{e.venue} · {e.city}</p>
                 <div className="mt-4 flex items-center justify-between">
                   <span className="text-lg font-semibold">${e.price}</span>
-                  <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">Book →</span>
+                  <button onClick={() => router.push((`/events/${e.id}`))} className="text-xs text-muted-foreground rounded-full border border-white/15 px-3 py-2 group-hover:text-foreground hover:bg-white/10 transition-colors">Book →</button>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </section>

@@ -13,11 +13,14 @@ const HeroScene = dynamic(() => import("@/components/HeroScene").then((m) => m.H
 });
 
 export default function Home() {
+
+  //defining refs
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const featRef = useRef<HTMLDivElement>(null);
 
+  //gsap scroll trigger and fade in animation effect
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
